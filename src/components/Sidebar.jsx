@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const Sidebar = () => {
   return (
     <aside className="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l shadow-xl ">
@@ -7,54 +9,55 @@ const Sidebar = () => {
 
       <div className="flex flex-col justify-between flex-1 mt-6">
         <div>
-          <nav className="border-b-2">
+          <nav className="border-b-2 pb-3">
             <a
-              className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-md "
-              href="#"
+              className="flex items-center px-4 py-2  bg-gray-100 rounded-md "
+              
             >
               <span className="mx-4 font-medium">Send Money</span>
             </a>
 
             <a
-              className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100  hover:text-gray-700"
-              href="#"
+              className="flex items-center px-4 py-2 mt-5 transition-colors duration-300 transform rounded-md  hover:bg-gray-100  hover:text-gray-700"
+             
             >
               <span className="mx-4 font-medium">Cash-Out</span>
             </a>
 
             <a
-              className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100  hover:text-gray-700"
-              href="#"
+              className="flex items-center px-4 py-2 mt-5 transition-colors duration-300 transform rounded-md  hover:bg-gray-100  hover:text-gray-700"
+              
             >
               <span className="mx-4 font-medium">Cash-in</span>
             </a>
 
             <a
-              className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100  hover:text-gray-700"
-              href="#"
+              className="flex items-center px-4 py-2 mt-5 transition-colors duration-300 transform rounded-md  hover:bg-gray-100  hover:text-gray-700"
+              
             >
               <span className="mx-4 font-medium">Balance</span>
             </a>
             <a
-              className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100  hover:text-gray-700"
-              href="#"
+              className="flex items-center px-4 py-2 mt-5 transition-colors duration-300 transform rounded-md  hover:bg-gray-100  hover:text-gray-700"
+             
             >
               <span className="mx-4 font-medium">Transaction</span>
             </a>
           </nav>
           <div>
-            <a
-              className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100  hover:text-gray-700"
-              href="#"
+            <NavLink to='/login'
+            
+              className="flex items-center px-4 py-2 mt-5 transition-colors duration-300 transform rounded-md  hover:bg-gray-100  hover:text-gray-700"
+              
             >
               <span className="mx-4 font-medium">Login</span>
-            </a>
-            <a
-              className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100  hover:text-gray-700"
-              href="#"
+            </NavLink>
+            <NavLink to='register'
+              className="flex items-center px-4 py-2 mt-5 transition-colors duration-300 transform rounded-md  hover:bg-gray-100  hover:text-gray-700"
+              
             >
               <span className="mx-4 font-medium">Register</span>
-            </a>
+            </NavLink>
           </div>
         </div>
 
