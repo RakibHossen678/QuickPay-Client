@@ -1,11 +1,40 @@
+import toast from "react-hot-toast";
+import useAxiosPublic from "../Hooks/axiosPublic";
+import { useMutation } from "@tanstack/react-query";
+
 const Register = () => {
+  const axiosPublic = useAxiosPublic();
+  const { mutateAsync } = useMutation({
+    mutationFn: async (info) => {
+      const { data } = await axiosPublic.post("/users", info);
+      console.log(data);
+    },
+    onSuccess: async () => {
+      toast.success("User created  Successful");
+    },
+  });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const pin = form.pin.value;
+    const mobile = form.mobile.value;
+    const email = form.email.value;
+    if (pin.length !== 5) {
+      toast.error("Pin number should be 5 characters");
+    }
+    const info = { name, pin, email, mobile };
+    console.log(info);
+
+    await mutateAsync(info);
+  };
   return (
     <div className="w-full mx-auto my-auto max-w-lg p-5 space-y-4 rounded-lg shadow-xl">
       <h1 className="text-3xl text-center font-semibold pb-4">
         Register to <br /> create account
       </h1>
 
-      <form className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div className="">
           <label className="">Name</label>
           <br />
@@ -54,7 +83,7 @@ const Register = () => {
         </div>
         <div className="">
           <button
-            type="button"
+            type="submit"
             className="px-8 py-3 space-x-2 font-semibold rounded bg-blue-800 text-white w-full"
           >
             Sign up
