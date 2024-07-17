@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import useAxiosPublic from "../Hooks/axiosPublic";
 import { useMutation } from "@tanstack/react-query";
+// import bcrypt from 'bcrypt'
 
 const Register = () => {
   const axiosPublic = useAxiosPublic();
@@ -22,8 +23,10 @@ const Register = () => {
     const email = form.email.value;
     if (pin.length !== 5) {
       toast.error("Pin number should be 5 characters");
+      return
     }
-    const info = { name, pin, email, mobile };
+    // const hashedPin=await bcrypt.hash(pin,10)
+    const info = { name, pin, email, mobile,role:'pending' };
     console.log(info);
 
     await mutateAsync(info);

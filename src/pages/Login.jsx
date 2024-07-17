@@ -1,11 +1,40 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../Hooks/axiosPublic";
+import toast from "react-hot-toast";
+
 const Login = () => {
+  const axiosPublic = useAxiosPublic();
+  const { data: usersData = {} } = useQuery({
+    queryKey: ["usersData"],
+    queryFn: async () => {
+      const { data } = await axiosPublic.get(`/users`);
+      return data;
+    },
+  });
+  console.log(usersData);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const pin = form.pin.value;
+    const isEmailMatched = usersData.find((user) => user.email === email);
+    const isPinMatched = usersData.find((user) => user.pin === pin);
+    console.log(isEmailMatched);
+    console.log(isPinMatched);
+
+    if (isEmailMatched && isPinMatched) {
+      toast.success("User Logged in Successfully");
+    } else {
+      toast.error("Something Went Wrong");
+    }
+  };
   return (
     <div className="w-full mx-auto my-auto max-w-lg p-5 space-y-4 rounded-lg shadow-xl">
       <h1 className="text-3xl text-center font-semibold pb-4">
         Login to <br /> your account
       </h1>
 
-      <form className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div className="">
           <label className="">Email/Phone Number</label>
           <br />
@@ -31,7 +60,7 @@ const Login = () => {
         </div>
         <div className="">
           <button
-            type="button"
+            type="submit"
             className="px-8 py-3 space-x-2 font-semibold rounded bg-blue-800 text-white w-full"
           >
             Sign in
