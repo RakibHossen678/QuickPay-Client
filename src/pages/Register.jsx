@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import useAxiosPublic from "../Hooks/axiosPublic";
 import { useMutation } from "@tanstack/react-query";
 // import bcrypt from 'bcrypt'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -70,7 +70,7 @@ const Register = () => {
             id="mobile"
             name="mobile"
             type="number"
-            placeholder="Enter Your Pin Number"
+            placeholder="Enter Your mobile Number"
             className="w-full p-2 rounded-md mt-1 border-gray-400 border-2 text-gray-900"
           />
           <br />
@@ -81,7 +81,7 @@ const Register = () => {
             id="email"
             name="email"
             type="email"
-            placeholder="Enter Your Pin Number"
+            placeholder="Enter Your email address"
             className="w-full p-2 rounded-md mt-1 border-gray-400 border-2 text-gray-900"
           />
           <br />
@@ -94,6 +94,12 @@ const Register = () => {
           >
             Sign up
           </button>
+        </div>
+        <div className="text-center">
+          Do You have account?
+          <Link className="text-blue-800" to={"/login"}>
+            Login
+          </Link>
         </div>
       </form>
     </div>

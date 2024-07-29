@@ -3,6 +3,7 @@ import useAxiosPublic from "../Hooks/axiosPublic";
 import toast from "react-hot-toast";
 import { useContext } from "react";
 import { AuthContext } from "../provider/Authprovider";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { user, login } = useContext(AuthContext);
@@ -74,6 +75,12 @@ const Login = () => {
           >
             Sign in
           </button>
+        </div>
+        <div className="text-center">
+          You don't have account?
+          <Link className="text-blue-800" to={"/register"}>
+            Register
+          </Link>
         </div>
       </form>
     </div>
