@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../Hooks/axiosPublic";
 import toast from "react-hot-toast";
+import { saveUser } from "../lib/localStorage";
 
 const Login = () => {
   const axiosPublic = useAxiosPublic();
@@ -15,14 +16,19 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const email = form.email.value;
+    const emailOrMobile = form.emailOrMobile.value;
     const pin = form.pin.value;
-    const isEmailMatched = usersData.find((user) => user.email === email);
-    const isPinMatched = usersData.find((user) => user.pin === pin);
-    console.log(isEmailMatched);
-    console.log(isPinMatched);
+    console.log(emailOrMobile, pin);
 
-    if (isEmailMatched && isPinMatched) {
+    const matchedUser = usersData.find(
+      (user) =>
+        (user.email === emailOrMobile || user.mobile === emailOrMobile) &&
+        user.pin === pin
+    );
+    console.log(matchedUser);
+
+    if (matchedUser) {
+      saveUser(matchedUser);
       toast.success("User Logged in Successfully");
     } else {
       toast.error("Something Went Wrong");
@@ -40,7 +46,7 @@ const Login = () => {
           <br />
           <input
             id="email"
-            name="email"
+            name="emailOrMobile"
             type="text"
             placeholder="Email/Number"
             className="w-full p-2 rounded-md mt-1 border-gray-400 border-2 text-gray-900"
