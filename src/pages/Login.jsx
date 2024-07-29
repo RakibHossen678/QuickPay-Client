@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../Hooks/axiosPublic";
 import toast from "react-hot-toast";
-import { saveUser } from "../lib/localStorage";
+import { useContext } from "react";
+import { AuthContext } from "../provider/Authprovider";
 
 const Login = () => {
+  const { user, login } = useContext(AuthContext);
+  console.log(user);
   const axiosPublic = useAxiosPublic();
   const { data: usersData = {} } = useQuery({
     queryKey: ["usersData"],
@@ -28,7 +31,7 @@ const Login = () => {
     console.log(matchedUser);
 
     if (matchedUser) {
-      saveUser(matchedUser);
+      login(matchedUser);
       toast.success("User Logged in Successfully");
     } else {
       toast.error("Something Went Wrong");

@@ -14,7 +14,7 @@ const Register = () => {
     },
     onSuccess: async () => {
       toast.success("User created  Successful");
-      navigate('/login')
+      navigate("/login");
     },
   });
   const handleSubmit = async (e) => {

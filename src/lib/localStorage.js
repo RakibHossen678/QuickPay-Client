@@ -21,3 +21,6 @@ export const saveUser = (user) => {
   localStorage.setItem("users", JSON.stringify(users));
   toast.success("User saved successfully!");
 };
+export const deleteUser = () => {
+  localStorage.removeItem("users");
+};
