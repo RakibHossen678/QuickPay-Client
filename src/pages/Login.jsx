@@ -77,7 +77,7 @@ const Login = () => {
           </button>
         </div>
         <div className="text-center">
-          You don't have account?
+          You don not have account?
           <Link className="text-blue-800" to={"/register"}>
             Register
           </Link>

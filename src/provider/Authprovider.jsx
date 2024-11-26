@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { deleteUser, getUser, saveUser } from "../lib/localStorage";
-import PropTypes from 'prop-types'; 
+import PropTypes from "prop-types";
 const AuthContext = createContext();
 const Authprovider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -25,9 +25,9 @@ const Authprovider = ({ children }) => {
   );
 };
 
-Authprovider.propTypes ={
-  children:PropTypes.func
-}
+Authprovider.propTypes = {
+  children: PropTypes.func,
+};
 
 export { AuthContext };
 export default Authprovider;
